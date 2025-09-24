@@ -1,0 +1,32 @@
+{
+  "name": "@satyrn/svelte",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+
+  "svelte": "./src/index.js",
+
+  "exports": {
+    ".": {
+      "svelte": "./src/index.js",
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    },
+    "./Cell.svelte": {
+      "svelte": "./src/Cell.svelte",
+      "default": "./src/Cell.svelte"
+    }
+  },
+
+  "files": ["src"],
+  "sideEffects": false,
+
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  }
+  ,
+  "dependencies": {
+    "dompurify": "^2.4.0",
+    "marked": "^5.1.1"
+  }
+}

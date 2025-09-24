@@ -1,0 +1,221 @@
+/* Using Google Material Symbols (loaded from app.html). */
+
+/* Cell-specific styles for SatyrnCell component */
+
+/* Cell card */
+.satyrn-cell {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;               /* smaller radius */
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  overflow: clip;
+  margin: 16px 0;                    /* space between cells */
+  position: relative;
+}
+
+/* Editor area */
+.satyrn-editor {
+  width: 100%;
+  min-height: 7rem;
+  padding: 12px 14px;
+  border: 0;
+  outline: none;
+  resize: vertical;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.45;
+  background: transparent;
+}
+.satyrn-editor::placeholder { color: #9aa4b2; }
+
+/* Python editor should use monospace Anonymous Pro */
+.satyrn-editor--code {
+  font-family: 'Anonymous Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Courier New', monospace;
+  font-size: 15px; /* comfortable code size */
+  font-weight: 400;
+  color: var(--text);
+}
+
+/* Rendered markdown uses Quicksand for proportional text */
+.satyrn-md-render {
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #555;
+  font-size: 14px; /* reduced for a more compact render */
+  line-height: 1.4;
+}
+
+/* Scale down common markdown elements relative to the base size so headings
+   and code blocks don't dominate the layout */
+.satyrn-md-render h1,
+.satyrn-md-render h2,
+.satyrn-md-render h3,
+.satyrn-md-render h4,
+.satyrn-md-render h5,
+.satyrn-md-render h6 {
+  margin: 0.6em 0 0.35em 0;
+  font-weight: 600;
+}
+.satyrn-md-render h1 { 
+  font-size: 2em; /* a little larger for stronger emphasis */
+  font-weight: 700; /* heavier for emphasis */
+}
+.satyrn-md-render h2 { font-size: 1.12em; }
+.satyrn-md-render h3 { font-size: 1.02em; }
+.satyrn-md-render h4,
+.satyrn-md-render h5,
+.satyrn-md-render h6 { font-size: 1em; }
+
+.satyrn-md-render p,
+.satyrn-md-render ul,
+.satyrn-md-render ol,
+.satyrn-md-render blockquote {
+  margin: 0.3em 0;
+  color: #556; /* slight contrast tweak */
+}
+
+.satyrn-md-render blockquote {
+  /* slightly larger left border for clearer quotation styling */
+  padding: 8px 0 8px 14px;
+  border-left: 4px solid #cfcfcf; /* 4px grey border as requested */
+  color: #4e5660;
+  font-style: italic;
+  margin: 0.35em 0;
+}
+
+.satyrn-md-render pre,
+.satyrn-md-render code {
+  font-family: 'Anonymous Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Courier New', monospace;
+}
+.satyrn-md-render pre {
+  font-size: 13px;
+  line-height: 1.35;
+  margin: 0.4em 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+/* Markdown source editors should be slightly smaller than rendered markdown */
+.satyrn-cell[data-type="md"] .satyrn-editor {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* Output */
+.satyrn-outputs {
+  background: #fff;
+  padding: 10px 12px;
+}
+.satyrn-outputs pre {
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--blue-100);
+  border: 1px solid color-mix(in srgb, var(--blue-100) 50%, #cfd8e3);
+  border-radius: 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #04395e;
+}
+
+.satyrn-cell-body { padding-right: 4px; }
+
+/* ===== Gutter layout ===== */
+.satyrn-cell-grid {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.satyrn-gutter {
+  padding: 8px 4px 0 0;              /* slightly tighter */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: sticky;                   /* subtle stick */
+  top: 8px;
+  height: fit-content;
+}
+
+/* Play button → rounded rectangle, less padding */
+.satyrn-gutter-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;                /* rounded rect */
+  border: 1px solid var(--amber-400);
+  background: linear-gradient(180deg, var(--amber-100), #fff 70%);
+  color: var(--amber-600);
+  cursor: pointer;
+  transition: box-shadow .15s ease, transform .02s ease, border-color .15s ease;
+  padding: 0;                         /* less padding */
+}
+.satyrn-gutter-btn:hover {
+  border-color: var(--amber-500);
+  box-shadow: 0 4px 10px rgba(255,160,0,0.18);
+}
+.satyrn-gutter-btn:disabled {
+  opacity: .6; cursor: default; box-shadow: none;
+}
+
+.satyrn-idx {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* Paragraph marker → bigger rounded rectangle */
+.satyrn-md-dot {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;                /* rounded rect */
+  background: var(--blue-100);
+  border: 1px solid var(--border);
+  color: var(--blue-600);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* Cell toolbar (upper-left) */
+.satyrn-cell-toolbar {
+  position: absolute;
+  right: 8px; /* moved toolbar to the far right of the cell */
+  top: 8px;
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .12s ease, transform .12s ease;
+}
+.satyrn-cell:focus-within .satyrn-cell-toolbar {
+  opacity: 1;
+  transform: translateY(0);
+}
+.satyrn-cell-toolbar .satyrn-btn {
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+}
+.satyrn-btn-icon { padding: 6px; border: none; background: transparent; }
+.satyrn-btn-icon .material-symbols-outlined { font-size: 18px; line-height: 1; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* small vertical divider used in the toolbar */
+.satyrn-toolbar-divider {
+  width: 1px;
+  height: 20px; /* shorter than full toolbar to feel like a divider */
+  background: var(--border); /* stronger contrast */
+  margin: 6px 8px;
+  align-self: center;
+  border-radius: 1px;
+}
+
+/* Keep focus ring for accessibility */
+.satyrn-btn:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent); border-color: var(--ring); outline: none; }

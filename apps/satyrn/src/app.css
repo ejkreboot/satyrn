@@ -1,0 +1,80 @@
+/* ===== Satyrn Theme (Colab-ish) ===== */
+:root {
+  --satyrn-amber: #ffa000;   /* primary accent */
+  --satyrn-blue:  #0095f2;   /* secondary (links, focus) */
+
+  /* tints/shades using color-mix; fallback values included */
+  --amber-600: color-mix(in srgb, var(--satyrn-amber) 100%, black 12%);
+  --amber-500: var(--satyrn-amber);
+  --amber-400: color-mix(in srgb, var(--satyrn-amber) 85%, white 15%);
+  --amber-100: color-mix(in srgb, var(--satyrn-amber) 12%, white 88%);
+
+  --blue-600:  color-mix(in srgb, var(--satyrn-blue) 100%, black 12%);
+  --blue-500:  var(--satyrn-blue);
+  --blue-100:  color-mix(in srgb, var(--satyrn-blue) 10%, white 90%);
+
+  --bg: #ffffff;
+  --card: #ffffff;
+  --border: #e6e8ec;
+  --muted: #f6f7f9;
+  --text: #0f172a;
+  --text-dim: #475569;
+  --ring: var(--blue-500);
+}
+
+html, body, .satyrn-theme { height: 100%; }
+.satyrn-theme {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* Container like Colab’s centered column */
+.satyrn-container {
+  max-width: 960px;
+  margin: 24px auto 96px;
+  padding: 0 16px;
+}
+
+/* Global UI elements (toolbar, generic buttons, badges) */
+.satyrn-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--muted), #fff 85%);
+}
+
+.satyrn-btn {
+  appearance: none;
+  background: #fff;
+  color: var(--text);
+  border-radius: 999px;               /* pill */
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: box-shadow .15s ease, transform .02s ease, border-color .15s ease;
+}
+.satyrn-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
+  border-color: var(--ring);
+}
+
+/* Keep any cell-specific styles in the package so components are portable */
+/* Cell-specific styles moved to package: @satyrn/svelte/src/satyrn-cell.css */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* prevent line breaks */
+  border: 0;
+}
