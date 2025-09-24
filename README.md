@@ -1,5 +1,8 @@
 # Satyrn
 
+A "zero-entry" scientific notebook. No registration, no logins. Just start working. 
+Collaborate in real time.
+
 Satyrn is a small, notebook-style editor built with Svelte and SvelteKit. It provides
 editable cells (markdown and code), a realtime cell store, and a pluggable execution
 engine for code cells. The project is organized as a monorepo with a demo app and
