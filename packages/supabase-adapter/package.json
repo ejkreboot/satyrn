@@ -1,6 +1,7 @@
 {
   "name": "@satyrn/supabase-adapter",
   "type": "module",
+  "license": "MIT",
   "exports": {
     ".": "./src/repo.js",
     "./browser": "./src/browser.js",

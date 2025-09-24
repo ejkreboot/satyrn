@@ -1,58 +1,68 @@
-# Svelte library
+# Satyrn
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+Satyrn is a small, notebook-style editor built with Svelte and SvelteKit. It provides
+editable cells (markdown and code), a realtime cell store, and a pluggable execution
+engine for code cells. The project is organized as a monorepo with a demo app and
+several local packages (UI components, adapters, and engines).
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+Important: at the moment only Python code blocks are supported for execution (via
+the bundled Pyodide engine). Support for other languages and runtimes is planned
+and will be added over time.
 
-## Creating a project
+Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Notebook-style cells: markdown + code blocks
+- Sanitized markdown rendering (marked + DOMPurify)
+- Realtime cell list backed by a pluggable adapter (Supabase adapter included)
+- Optimistic UI updates, sandbox mode, and local overlays for offline editing
+- Pluggable execution engines (Pyodide/Python bundled)
 
-```sh
-# create a new project in the current directory
-npx sv create
+Quick start (development)
 
-# create a new project in my-app
-npx sv create my-app
-```
+0. Pre-reqs
 
-## Developing
+- Create a supabase database, intialize with `init.sql`
+- Copy ./apps/satyrn/.env.example to ./apps/satyrn/.env and update with your values
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Install dependencies at the repo root:
 
-```sh
-npm run dev
+   ```bash
+   npm install
+   ```
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+2. Run the demo app (SvelteKit + Vite dev server):
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+   ```bash
+   npm run dev --workspace-root
+   # or from the apps/satyrn folder if you prefer
+   cd apps/satyrn && npm install && npm run dev
+   ```
 
-## Building
+Open the app in your browser (usually http://localhost:5173 or the port Vite reports).
 
-To build your library:
+Where to look in the repo
 
-```sh
-npm pack
-```
+- `apps/satyrn` — demo SvelteKit app and entrypoint used during development
+- `packages/svelte` — shared Svelte components (SatyrnCell and styles)
+- `packages/supabase-adapter` — Supabase-backed repo + realtime adapter
+- `packages/engines` — runtime engines (Pyodide integration)
+- `packages/realtime` — small cellStore abstraction used by the app
 
-To create a production version of your showcase app:
+Notes and current limitations
 
-```sh
-npm run build
-```
+- Execution: only Python code blocks are executed right now (via Pyodide). Other
+  languages and remote execution backends are planned.
+- Realtime: the repo uses Supabase Realtime channels for events; be sure your
+  Supabase instance has the appropriate publication configured if you run with
+  a live database (see `init.sql`).
 
-You can preview the production build with `npm run preview`.
+Contributing
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Run the demo locally and explore `apps/satyrn/src` for examples of how the
+  store, components, and engines are wired together.
+- Keep the `packages/*` code focused: adapters for external services, UI in
+  `packages/svelte`, and small helper libs under `apps/satyrn/src/lib`.
 
-## Publishing
+License
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```sh
-npm publish
-```
+- This project is released under the MIT License. See `LICENSE` for details.
